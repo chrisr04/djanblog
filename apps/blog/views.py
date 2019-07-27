@@ -14,7 +14,7 @@ def home(request):
             Q(descripcion__icontains = queryset)
         ).distinct()
 
-    paginator = Paginator(posts,1)
+    paginator = Paginator(posts,5)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     return render(request,'index.html',{'posts':posts,'categorias':categorias,'pages':paginator.page_range,'currentPage':posts.number})
@@ -34,7 +34,7 @@ def categoria(request,category):
             categoria = Categoria.objects.get(nombre__iexact = category),
         ).distinct()
 
-    paginator = Paginator(posts,1)
+    paginator = Paginator(posts,5)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
     return render(request,'categorias/category.html',{'posts':posts,'categorias':categorias,'nombre_categoria':category,'pages':paginator.page_range,'currentPage':posts.number})
