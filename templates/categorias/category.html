@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+{% block titulo %}
+    {{nombre_categoria}}
+{% endblock titulo %}
+
+{% block imagen %}
+    {% for categoria in categorias %}
+        {% if categoria.nombre == nombre_categoria %}
+            {{categoria.imagen}}
+        {% endif %}
+    {% endfor %}
+{% endblock imagen %}
+
+{% block header %}
+    <div class="site-heading">
+        <h1>{{nombre_categoria}}</h1>
+        <span class="subheading">A Blog Theme by Start Bootstrap</span>
+    </div>
+{% endblock header %}
