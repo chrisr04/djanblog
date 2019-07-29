@@ -10,8 +10,12 @@ ALLOWED_HOSTS = ['djanbloginvestigation.herokuapp.com']
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'djanblog.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd470ateft2iu52',
+        'USER': 'rbgillkapnllsn',
+        'PASSWORD': '2f55e3a7c92b627aa77e2148bc00653d5e7d4e73d81e4c0d4bf33863e1c04767',
+        'HOST': 'ec2-54-83-1-101.compute-1.amazonaws.com',
+        'PORT': 5432,
     }
     # 'default': {
     #     'ENGINE': 'django.db.backends.mysql',
