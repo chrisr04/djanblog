@@ -2,20 +2,20 @@
 {% load staticfiles %}
 
 {% block titulo %}
-  {{ detalle_post.titulo }}
+  {{ publicacion.titulo }}
 {% endblock titulo %}
 
 {% block imagen %}
-  {{ detalle_post.imagen }}
+  {{ publicacion.imagen }}
 {% endblock imagen %}
 
 {% block header %}
     <div class="post-heading">
-      <h1>{{ detalle_post.titulo }}</h1>
-      <h3 class="subheading">{{ detalle_post.descripcion }}</h3>
+      <h1>{{ publicacion.titulo }}</h1>
+      <h3 class="subheading">{{ publicacion.descripcion }}</h3>
       <span class="meta">Escrito por
-        <strong><a href="#">{{ detalle_post.autor }}</a></strong>
-         el {{ detalle_post.creado }}</span>
+        <strong>{{ publicacion.autor }}</strong>
+         el {{ publicacion.creado }}</span>
     </div>
 {% endblock header %}
 
@@ -27,11 +27,10 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 col-md-10 mx-auto">
-              {{ detalle_post.contenido | safe }}
+              {{ publicacion.contenido | safe }}
           </div>
         </div>
       </div>
     </article>
     <hr>
-  
 {% endblock contenido %}

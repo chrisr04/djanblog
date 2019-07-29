@@ -1,0 +1,68 @@
+{% extends 'index.html' %}
+{% load staticfiles %}
+{% block titulo %}
+    Autores
+{% endblock titulo %}
+{% block titulo_seccion %}
+    Autores
+{% endblock titulo_seccion %}
+{% block slogan %}
+    Conoce a nuestros mejores escritores
+{% endblock slogan %}
+{% block imagen %}
+    {% static 'img/authors-bg.jpg' %}
+{% endblock imagen %}
+{% block barra_busqueda %}
+{% endblock barra_busqueda %}
+{% block contenido %}
+	<div class="row">
+    {% for autor in autores %}
+		<div class="col-lg-4 col-sm-6">
+            <div class="card hovercard">
+                <div class="cardheader" style="background-image: url({{autor.fondo}})">
+                </div>
+                <div class="avatar">
+                    <div class="circular--portrait">
+                        <img alt="" src="{{autor.foto}}">
+                    </div>
+                </div>
+                <div class="info">
+                    <div class="title">
+                        <span>{{autor}}</span>
+                    </div>
+                    {% comment %} <div class="desc">Estudiante de Ingeneria de Sistemas en la universidad del Magdalena.</div> {% endcomment %}
+                </div>
+                <div class="bottom">
+                     <ul class="list-inline text-center">
+                        <li class="list-inline-item">
+                            <a href="{% if  autor.twitter %}{{autor.twitter}}{% else %}#{% endif %}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{% if autor.facebook %}{{autor.facebook}}{% else %}#{% endif %}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                            </span>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="{% if  autor.instagram %}{{autor.instagram}}{% else %}#{% endif %}">
+                            <span class="fa-stack fa-lg">
+                                <i class="fas fa-circle fa-stack-2x"></i>
+                                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                            </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>    
+    {% endfor %}
+	</div>
+
+{% endblock contenido%}

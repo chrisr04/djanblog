@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Publicacion,Categoria
+from .models import Publicacion,Categoria,Autor
 from django.shortcuts import get_object_or_404
 from django.db.models import Q
 from django.core.paginator import Paginator
@@ -17,7 +17,7 @@ def home(request):
     paginator = Paginator(posts,5)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
-    return render(request,'index.html',{'posts':posts,'categorias':categorias,'pages':paginator.page_range,'currentPage':posts.number})
+    return render(request,'index.html',{'publicaciones':posts,'categorias':categorias,'pages':paginator.page_range,'currentPage':posts.number})
 
 def categoria(request,category):
     queryset = request.GET.get("buscar")
@@ -37,9 +37,14 @@ def categoria(request,category):
     paginator = Paginator(posts,5)
     page = request.GET.get('page')
     posts = paginator.get_page(page)
-    return render(request,'categorias/category.html',{'posts':posts,'categorias':categorias,'nombre_categoria':category,'pages':paginator.page_range,'currentPage':posts.number})
+    return render(request,'categorias/categoria.html',{'publicaciones':posts,'categorias':categorias,'nombre_categoria':category,'pages':paginator.page_range,'currentPage':posts.number})
 
-def detallePost(request,category,slug):
+def autor(request):
+    autores = Autor.objects.filter(activo = True)
+    categorias = Categoria.objects.filter(activo = True)
+    return render(request,'autores/autor.html',{'autores':autores,'categorias':categorias})
+
+def publicacion(request,category,slug):
     categorias = Categoria.objects.filter(activo = True)
     post = get_object_or_404(Publicacion,slug = slug)
-    return render(request,'publicacion.html',{'detalle_post':post,'categorias':categorias,'nombre_categoria':category})
+    return render(request,'publicacion.html',{'publicacion':post,'categorias':categorias,'nombre_categoria':category})

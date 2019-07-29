@@ -78,12 +78,16 @@ WSGI_APPLICATION = 'djanblog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djanblog',
-        'USER':'root',
-        'PASSWORD':'1083031426Mr)',
-        'PORT':'3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'djanblog.sqlite3',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'djanblog',
+    #     'USER':'root',
+    #     'PASSWORD':'1083031426Mr)',
+    #     'PORT':'3306',
+    # }
 }
 
 

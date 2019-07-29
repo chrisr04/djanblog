@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% block titulo %}
+    {{nombre_categoria}}
+{% endblock titulo %}
+
+{% block imagen %}
+    {% for categoria in categorias %}
+        {% if categoria.nombre == nombre_categoria %}
+            {{categoria.imagen}}
+        {% endif %}
+    {% endfor %}
+{% endblock imagen %}
+{% block barra_busqueda %}
+{% endblock barra_busqueda %}
+{% block titulo_seccion %}
+    {{nombre_categoria}}
+{% endblock titulo_seccion %}

@@ -37,11 +37,24 @@
             <li class="nav-item">
               <a class="nav-link" href="{% url 'blog:home' %}">Inicio</a>
             </li>
-            {% for categoria in categorias %}
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'blog:categoria' categoria.nombre %}">{{categoria.nombre}}</a>
-              </li>         
-            {% endfor %}
+            <li class="nav-item">
+              <div class="dropdown">
+                <a class="dropdown-toggle nav-link " href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Categorias
+                </a>
+                <div class="dropdown-menu">
+                  {% for categoria in categorias %}
+                      <a class="dropdown-item" href="{% url 'blog:categoria' categoria.nombre %}">{{categoria.nombre}}</a>        
+                  {% endfor %}
+                </div>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'blog:autores' %}">Autores</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'blog:home' %}admin">Ingresar</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -55,8 +68,8 @@
           <div class="col-lg-8 col-md-10 mx-auto">
           {% block header%}
             <div class="site-heading">
-              <h1>Djanblog</h1>
-              <span class="subheading">A Blog Theme by Start Bootstrap</span>
+              <h1>{% block titulo_seccion %}Djanblog{% endblock titulo_seccion %}</h1>
+              <span class="subheading">{% block slogan %}El mejor contenido lo encuentras aquí{% endblock slogan %}</span>
             </div>
           {% endblock header %}
           </div>
@@ -84,25 +97,25 @@
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           {% block contenido %}
-          {% if posts %}
-            {% for post in posts %}
+          {% if publicaciones %}
+            {% for publicacion in publicaciones %}
                 <div class="post-preview">
-                  <a href="{% url 'blog:detalle_post' category=post.categoria slug=post.slug %}">
+                  <a href="{% url 'blog:publicacion' category=publicacion.categoria slug=publicacion.slug %}">
                     <h2 class="post-title">
-                      {{ post.titulo }}
+                      {{ publicacion.titulo }}
                     </h2>
                     <h3 class="post-subtitle">
-                      {{ post.descripcion }}
+                      {{ publicacion.descripcion }}
                     </h3>
                   </a>
                   <span class="post-meta">Escrito por
-                   <strong>{{ post.autor }}</strong>   el
-                    {{ post.creado }}</span>
+                   <strong>{{ publicacion.autor }}</strong>   el
+                    {{ publicacion.creado }}</span>
                 </div>
                 <hr>
             {% endfor %}
           {% else %}
-            <h1>No existen post registrados!</h1>
+            <h1>No hay publicaciones registradas!</h1>
           {% endif %}
           {% endblock contenido %}
 
@@ -112,21 +125,24 @@
 <div class="clearfix">
    <div class="row justify-content-md-center">
     <ul class="pagination">
-         {% if posts.has_previous %}
+      {% if publicaciones.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ publicaciones.previous_page_number }}{% if request.GET.search %}&buscar={{ request.GET.search}}{% endif %}" tabindex="-1" aria-disabled="true"><i class="fa fa-arrow-left"></i></a>
+      </li>
+      {% endif %}
+      {% if publicaciones %}
+        {% for page in pages %}
+            {% if currentPage == page %}
+              <li class="page-item active"><a class="page-link" href="?page={{page}}{% if request.GET.search %}&buscar={{ request.GET.search }}{% endif %}">{{page}}</a></li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href="?page={{page}}{% if request.GET.search %}&buscar={{ request.GET.search }}{% endif %}">{{page}}</a></li>
+            {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      {% if publicaciones.has_next %}
           <li class="page-item">
-            <a class="page-link" href="?page={{ posts.previous_page_number }}{% if request.GET.search %}&buscar={{ request.GET.search}}{% endif %}" tabindex="-1" aria-disabled="true"><i class="fa fa-arrow-left"></i></a>
-          </li>
-         {% endif %}
-      {% for page in pages %}
-          {% if currentPage == page %}
-            <li class="page-item active"><a class="page-link" href="?page={{page}}{% if request.GET.search %}&buscar={{ request.GET.search }}{% endif %}">{{page}}</a></li>
-          {% else %}
-            <li class="page-item"><a class="page-link" href="?page={{page}}{% if request.GET.search %}&buscar={{ request.GET.search }}{% endif %}">{{page}}</a></li>
-          {% endif %}
-      {% endfor %}
-      {% if posts.has_next %}
-          <li class="page-item">
-            <a class="page-link" href="?page={{ posts.next_page_number }}{% if request.GET.search %}&buscar={{ request.GET.search }}{% endif %}" tabindex="-1" aria-disabled="true"><i class="fa fa-arrow-right"></i></a>
+            <a class="page-link" href="?page={{ publicaciones.next_page_number }}{% if request.GET.search %}&buscar={{ request.GET.search }}{% endif %}" tabindex="-1" aria-disabled="true"><i class="fa fa-arrow-right"></i></a>
           </li>
       {% endif %}
     </ul>
@@ -139,7 +155,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
-            <ul class="list-inline text-center">
+            {% comment %} <ul class="list-inline text-center">
               <li class="list-inline-item">
                 <a href="#">
                   <span class="fa-stack fa-lg">
@@ -164,7 +180,7 @@
                   </span>
                 </a>
               </li>
-            </ul>
+            </ul> {% endcomment %}
             <p class="copyright text-muted">Copyright &copy; djanblog 2019</p>
           </div>
         </div>
