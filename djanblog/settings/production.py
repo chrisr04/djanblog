@@ -21,6 +21,3 @@ DATABASES = {
     #     'PORT':'3306',
     # }
 }
-
-STATIC_ROOT = 'static'
-STATIC_URL = '/static/'
