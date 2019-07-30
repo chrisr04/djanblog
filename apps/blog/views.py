@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 
 def home(request):
-    queryset = request.GET.get("buscar")
+    queryset = request.GET.get("search")
     categorias = Categoria.objects.filter(activo = True)
     posts = Publicacion.objects.filter(activo = True)
     if queryset:
@@ -20,7 +20,7 @@ def home(request):
     return render(request,'index.html',{'publicaciones':posts,'categorias':categorias,'pages':paginator.page_range,'currentPage':posts.number})
 
 def categoria(request,category):
-    queryset = request.GET.get("buscar")
+    queryset = request.GET.get("search")
     categorias = Categoria.objects.filter(activo = True)
     posts = Publicacion.objects.filter(
         activo = True,
