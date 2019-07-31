@@ -9755,6 +9755,14 @@ section.ftco-section{
   box-shadow: 0px 3px 15px -3px rgba(0,0,0,0.75);
 }
 
+p.description {
+  white-space:nowrap; 
+  overflow:hidden;
+  text-overflow: ellipsis;
+  /*otras hornamentales*/
+  }
+
+
 .circular--portrait {
   position: relative;
   width: 80px;

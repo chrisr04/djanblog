@@ -173,7 +173,7 @@
                                 </a>
                                 <div class="text bg-white p-4">
                                     <h3 class="heading"><a href="{% url 'blog:publicacion' category=publicacion.categoria slug=publicacion.slug %}">{{publicacion.titulo}}</a></h3>
-                                    <p>{{publicacion.descripcion}}</p>
+                                    <p class="description">{{publicacion.descripcion}}</p>
                                     <div class="d-flex align-items-center mt-4">
                                         <p class="mb-0"><a href="{% url 'blog:publicacion' category=publicacion.categoria slug=publicacion.slug %}" class="btn btn-secondary">Leer más <span class="ion-ios-arrow-round-forward"></span></a></p>
                                         <p class="ml-auto mb-0">
