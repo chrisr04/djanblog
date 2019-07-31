@@ -3,66 +3,52 @@
 {% block titulo %}
     Autores
 {% endblock titulo %}
-{% block titulo_seccion %}
-    Autores
-{% endblock titulo_seccion %}
-{% block slogan %}
-    Conoce a nuestros mejores escritores
-{% endblock slogan %}
-{% block imagen %}
-    {% static 'img/authors-bg.jpg' %}
-{% endblock imagen %}
-{% block barra_busqueda %}
-{% endblock barra_busqueda %}
-{% block contenido %}
-	<div class="row">
-    {% for autor in autores %}
-		<div class="col-lg-4 col-sm-6">
-            <div class="card hovercard">
-                <div class="cardheader" style="background-image: url({{autor.fondo}})">
+{% block header %}
+ <section class="hero-wrap hero-wrap-2" style="background-image: url({% static 'img/authors-bg.jpg' %});">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">Autores</h1>
+             <p class="subtitle">Conoce a nuestros escritores</p>
+          </div>
+        </div>
+      </div>
+  </section>
+{% endblock header %}
+{% block main_content %}
+		<section class="ftco-section ftco-no-pb">
+			<div class="container">
+			    <div class="row justify-content-center mb-5 pb-2">
+			        <div class="col-md-8 text-center heading-section ftco-animate">
+				        <h2 class="mb-4"><span>Nuestros</span> Autores</h2>
+			        </div>
+			    </div>
+                <div class="row">
+                    {% if autores %}
+                        {% for autor in autores %}
+                            <div class="col-md-6 col-lg-3 ftco-animate">
+                                <div class="staff">
+                                    <div class="img-wrap d-flex align-items-stretch">
+                                        <div class="img align-self-stretch" style="background-image: url({{autor.foto}});"></div>
+                                    </div>
+                                    <div class="text pt-3 text-center">
+                                        <h5>{{autor}}</h5>
+                                        <span class="position mb-4">Escritor</span>
+                                        <div class="faded">
+                                            {% comment %} <p>I am an ambitious workaholic, but apart from that, pretty simple person.</p> {% endcomment %}
+                                            <ul class="ftco-social text-center">
+                                            <li class="ftco-animate"><a href="{% if autor.twitter %}{{autor.twitter}}{% else %}#{% endif %}"><span class="icon-twitter"></span></a></li>
+                                            <li class="ftco-animate"><a href="{% if autor.facebook %}{{autor.facebook}}{% else %}#{% endif %}"><span class="icon-facebook"></span></a></li>
+                                            <li class="ftco-animate"><a href="{% if autor.instagram %}{{autor.instagram}}{% else %}#{% endif %}"><span class="icon-instagram"></span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>                          
+                        {% endfor %}
+                    {% endif %}	
                 </div>
-                <div class="avatar">
-                    <div class="circular--portrait">
-                        <img alt="" src="{{autor.foto}}">
-                    </div>
-                </div>
-                <div class="info">
-                    <div class="title">
-                        <span>{{autor}}</span>
-                    </div>
-                    {% comment %} <div class="desc">Estudiante de Ingeneria de Sistemas en la universidad del Magdalena.</div> {% endcomment %}
-                </div>
-                <div class="bottom">
-                     <ul class="list-inline text-center">
-                        <li class="list-inline-item">
-                            <a href="{% if  autor.twitter %}{{autor.twitter}}{% else %}#{% endif %}">
-                            <span class="fa-stack fa-lg">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
-                            </span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="{% if autor.facebook %}{{autor.facebook}}{% else %}#{% endif %}">
-                            <span class="fa-stack fa-lg">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                            </span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="{% if  autor.instagram %}{{autor.instagram}}{% else %}#{% endif %}">
-                            <span class="fa-stack fa-lg">
-                                <i class="fas fa-circle fa-stack-2x"></i>
-                                <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
-                            </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>    
-    {% endfor %}
-	</div>
-
-{% endblock contenido%}
+			</div>
+		</section>
+{% endblock main_content %}

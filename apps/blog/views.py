@@ -46,5 +46,6 @@ def autor(request):
 
 def publicacion(request,category,slug):
     categorias = Categoria.objects.filter(activo = True)
+    autores = Autor.objects.filter(activo = True)
     post = get_object_or_404(Publicacion,slug = slug)
-    return render(request,'publicaciones/publicacion.html',{'publicacion':post,'categorias':categorias,'nombre_categoria':category})
+    return render(request,'publicaciones/publicacion.html',{'publicacion':post,'categorias':categorias,'nombre_categoria':category,'autores':autores})

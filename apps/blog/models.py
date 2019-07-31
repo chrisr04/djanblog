@@ -22,7 +22,6 @@ class Autor(models.Model):
     apellido = models.CharField(max_length = 255, null = False, blank = False)
     correo = models.EmailField(blank = False, null = False)
     foto = models.URLField(max_length = 355, blank = True, null= True, default="https://www.uic.mx/posgrados/files/2018/05/default-user.png")
-    fondo = models.URLField(max_length = 355, blank = True, null= True, default="https://sc2.elpais.com.uy/files/article_default_content/uploads/2017/11/27/5a1c86989e3eb.jpeg")
     facebook = models.URLField(null = True, blank = True)
     twitter = models.URLField(null = True, blank = True)
     instagram = models.URLField(null = True, blank = True)

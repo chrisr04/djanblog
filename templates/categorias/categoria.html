@@ -2,14 +2,25 @@
 {% block titulo %}
     {{nombre_categoria}}
 {% endblock titulo %}
-
-{% block imagen %}
+{% block header %}
+ <section class="hero-wrap hero-wrap-2" style="background-image: url(
     {% for categoria in categorias %}
         {% if categoria.nombre == nombre_categoria %}
             {{categoria.imagen}}
         {% endif %}
     {% endfor %}
-{% endblock imagen %}
+    );">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+          <div class="col-md-9 ftco-animate text-center">
+            <h1 class="mb-2 bread">{{nombre_categoria}}</h1>
+             <p class="subtitle">El mejor contenido lo encuentras aquí</p>
+          </div>
+        </div>
+      </div>
+  </section>
+{% endblock header %}
 {% block titulo_seccion %}
-    {{nombre_categoria}}
+    
 {% endblock titulo_seccion %}
