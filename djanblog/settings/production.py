@@ -17,13 +17,6 @@ DATABASES = {
         'HOST': 'ec2-54-83-1-101.compute-1.amazonaws.com',
         'PORT': 5432,
     }
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.mysql',
-    #     'NAME': 'djanblog',
-    #     'USER':'root',
-    #     'PASSWORD':'1083031426Mr)',
-    #     'PORT':'3306',
-    # }
 }
 
 STATIC_ROOT = 'static'
